@@ -9,5 +9,16 @@
   "examplemod.configuration.items": "Item List",
   "examplemod.configuration.logDirtBlock": "Log Dirt Block",
   "examplemod.configuration.magicNumberIntroduction": "Magic Number Text",
-  "examplemod.configuration.magicNumber": "Magic Number"
+  "examplemod.configuration.magicNumber": "Magic Number",
+
+  "profession.examplemod.none": "None",
+  "profession.examplemod.miner": "Miner",
+  "profession.examplemod.builder": "Builder-Engineer",
+  "profession.examplemod.farmer_cook": "Farmer-Cook",
+  "profession.examplemod.blacksmith": "Blacksmith",
+  "profession.examplemod.enchanter_alchemist": "Enchanter-Alchemist",
+  "profession.examplemod.lumberjack": "Lumberjack",
+  "profession.examplemod.fisherman": "Fisherman",
+  "profession.examplemod.warrior": "Warrior",
+  "profession.examplemod.mayor": "Mayor"
 }

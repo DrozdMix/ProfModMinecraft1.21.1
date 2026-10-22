@@ -1,0 +1,36 @@
+package com.example.examplemod.event;
+
+import com.example.examplemod.ExampleMod;
+import com.example.examplemod.profession.PlayerProfessionData;
+import com.example.examplemod.profession.Profession;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+
+@EventBusSubscriber(modid = ExampleMod.MODID)
+public class FarmerBeeRestrictionHandler {
+
+    @SubscribeEvent
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide()) return;
+
+        BlockState state = event.getLevel().getBlockState(event.getPos());
+        boolean isBeehive = state.is(Blocks.BEEHIVE) || state.is(Blocks.BEE_NEST);
+        if (!isBeehive) return;
+
+        PlayerProfessionData data = player.getData(ExampleMod.PROFESSION_DATA);
+        if (data.hasProfession(Profession.FARMER_COOK)) return;
+
+        event.setCanceled(true);
+        event.setCancellationResult(net.minecraft.world.InteractionResult.FAIL);
+        player.displayClientMessage(
+                Component.literal("§cТолько Фермер может работать с пчёлами!"),
+                true
+        );
+    }
+}
